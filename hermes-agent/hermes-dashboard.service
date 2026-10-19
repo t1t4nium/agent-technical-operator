@@ -1,0 +1,15 @@
+[Unit]
+Description=Hermes Agent Dashboard
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+EnvironmentFile=%h/.hermes/.env
+Type=simple
+ExecStart=%h/.local/bin/hermes dashboard --host 0.0.0.0 --no-open
+WorkingDirectory=%h
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target

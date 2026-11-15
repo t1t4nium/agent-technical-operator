@@ -54,7 +54,7 @@ As `hermes` user:
 git clone https://github.com/t1t4nium/agent-technical-operator.git
 cd agent-technical-operator
 sh hermes-agent/config.sh
-cp SOUL.md ~/.hermes/SOUL.md
+cp hermes-agent/SOUL.md ~/.hermes/SOUL.md
 ```
 
 ### Gateway

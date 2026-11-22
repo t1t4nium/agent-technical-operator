@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 # Local provider
-hermes config set providers.llama-local '{"base_url": "http://127.0.0.1:8080/v1", "default_model": "/etc/llama/models/qwen3.8-27b-q3.gguf", "extra_body": {"temperature": 0.5, "presence_penalty": 0.0, "top_p": 0.80, "min_p": 0.0, "max_tokens": 16384}}'
+hermes config set providers.llama-local '{"base_url": "http://127.0.0.1:8080/v1", "default_model": "/etc/llama/models/qwen3.8-27b-q3.gguf", "extra_body": {"temperature": 0.1, "presence_penalty": 0.0, "top_p": 0.80, "min_p": 0.0, "max_tokens": 16384}}'
 
 # Model
 hermes config unset model.base_url
@@ -15,7 +15,7 @@ hermes config set telemetry.shared_metrics.send false
 hermes config set approvals.mode manual
 hermes config set approvals.timeout 300
 hermes config set approvals.cron_mode deny
-hermes config set approvals.deny '["cat*.env*", "less*.env*", "more*.env*", "head*.env*", "tail*.env*", "grep*.env*", "sed*.env*", "awk*.env*", "cut*.env*", "base64*.env*", "strings*.env*", "od*.env*", "xxd*.env*", "diff*.env*", "cat*auth.json*", "less*auth.json*", "more*auth.json*", "head*auth.json*", "tail*auth.json*", "grep*auth.json*", "sed*auth.json*", "awk*auth.json*", "cut*auth.json*", "base64*auth.json*", "strings*auth.json*", "od*auth.json*", "xxd*auth.json*", "diff*auth.json*", "cat*.ssh*", "less*.ssh*", "more*.ssh*", "head*.ssh*", "tail*.ssh*", "grep*.ssh*", "sed*.ssh*", "awk*.ssh*", "cut*.ssh*", "base64*.ssh*", "strings*.ssh*", "od*.ssh*", "xxd*.ssh*", "diff*.ssh*"]'
+hermes config set approvals.deny '["cat*.env*", "less*.env*", "more*.env*", "head*.env*", "tail*.env*", "grep*.env*", "sed*.env*", "awk*.env*", "cut*.env*", "base64*.env*", "strings*.env*", "od*.env*", "xxd*.env*", "diff*.env*", "cat*auth.json*", "less*auth.json*", "more*auth.json*", "head*auth.json*", "tail*auth.json*", "grep*auth.json*", "sed*auth.json*", "awk*auth.json*", "cut*auth.json*", "base64*auth.json*", "strings*auth.json*", "od*auth.json*", "xxd*auth.json*", "diff*auth.json*", "cat*.ssh*", "less*.ssh*", "more*.ssh*", "head*.ssh*", "tail*.ssh*", "grep*.ssh*", "sed*.ssh*", "awk*.ssh*", "cut*.ssh*", "base64*.ssh*", "strings*.ssh*", "od*.ssh*", "xxd*.ssh*", "diff*.ssh*", "cat*id_rsa*", "less*id_rsa*", "more*id_rsa*", "head*id_rsa*", "tail*id_rsa*", "grep*id_rsa*", "sed*id_rsa*", "awk*id_rsa*", "cut*id_rsa*", "base64*id_rsa*", "strings*id_rsa*", "od*id_rsa*", "xxd*id_rsa*", "diff*id_rsa*", "cat*id_ed25519*", "less*id_ed25519*", "more*id_ed25519*", "head*id_ed25519*", "tail*id_ed25519*", "grep*id_ed25519*", "sed*id_ed25519*", "awk*id_ed25519*", "cut*id_ed25519*", "base64*id_ed25519*", "strings*id_ed25519*", "od*id_ed25519*", "xxd*id_ed25519*", "diff*id_ed25519*"]'
 
 # Agent
 hermes config set agent.max_turns 30
@@ -39,11 +39,13 @@ hermes config set skills.disabled '["airtable", "architecture-diagram", "arxiv",
 # Toolsets and plugins
 hermes tools enable --platform cli clarify
 hermes tools enable --platform cli code_execution
+hermes tools enable --platform cli cronjob
 hermes tools enable --platform cli file
 hermes tools enable --platform cli skills
 hermes tools enable --platform cli terminal
-hermes config set agent.disabled_toolsets '["web", "browser", "vision", "video", "image_gen", "video_gen", "x_search", "tts", "stt", "todo", "kanban", "memory", "context_engine", "session_search", "connections", "delegation", "cronjob", "yuanbao", "computer_use", "a2a"]'
+hermes config set agent.disabled_toolsets '["web", "browser", "vision", "video", "image_gen", "video_gen", "x_search", "tts", "stt", "todo", "kanban", "memory", "context_engine", "session_search", "connections", "delegation", "yuanbao", "computer_use", "a2a"]'
 hermes plugins install --enable t1t4nium/hermes-agent-env-secret-redactor
+hermes plugins install --yes-deps --enable hermes-memory-wiki
 
 # Sessions
 hermes config set sessions.auto_archive false

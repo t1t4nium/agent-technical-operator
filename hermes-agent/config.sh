@@ -46,6 +46,7 @@ hermes tools enable --platform cli terminal
 hermes config set agent.disabled_toolsets '["web", "browser", "vision", "video", "image_gen", "video_gen", "x_search", "tts", "stt", "todo", "kanban", "memory", "context_engine", "session_search", "connections", "delegation", "yuanbao", "computer_use", "a2a"]'
 hermes plugins install --enable t1t4nium/hermes-agent-env-secret-redactor
 hermes plugins install --yes-deps --enable hermes-memory-wiki
+hermes plugins install --yes-deps --enable hermes_otel
 
 # Sessions
 hermes config set sessions.auto_archive false

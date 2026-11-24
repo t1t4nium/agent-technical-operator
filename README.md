@@ -101,3 +101,21 @@ cd agent-technical-operator
 cp hermes-agent/hermes-dashboard.service ~/.config/systemd/user/
 systemctl --user enable --now hermes-dashboard.service
 ```
+
+### Use it in VS Code with ACP
+
+1. Install [ACP Client](https://marketplace.visualstudio.com/items?itemName=formulahendry.acp-client) extension.
+2. In ACP Client bar, select Connect Agent, then select Hermes Agent.
+
+If the agent that you want to connect is not the default profile, you can add a custom agent in ACP Client.
+
+Example for a profile named `john`:
+
+```json
+"acp.agents": {
+  "Hermes Agent (john)": {
+    "command": "hermes",
+    "args": ["-p", "john", "acp"]
+  }
+}
+```
